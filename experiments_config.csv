@@ -1,0 +1,2 @@
+env,bots_number,packs_number,places_number,bot_scale,pack_scale,place_scale,load_reward,unload_reward,episode_steps,policy,policy_width,batch_size,learning_rate,update_rate,update_tau,discount,expl_noise,policy_noise,noise_clip,max_steps,start_step,eval_freq,eval_length,min_performance,seed
+SB,3,3,2,0.03,0.025,0.1,50,100,50,TD3-1,128,512,0.0003,2,0.005,0.99,0.1,0.2,0.5,1000000,2000,1000,10,0.9,30
