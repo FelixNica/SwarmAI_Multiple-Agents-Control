@@ -3,7 +3,7 @@
 ![](evaluation_loop.gif)
 
 ### Problem definition:
-Given a number of autonomous mobility entities create a single neural network that can infer their next required positions in a specific logistic reward based environment.<br />
+Given a number of autonomous mobility entities create a single neural network that can infer their next required positions in a specific logistic reward based environment.<br /><br />
 
 ### Implementation details:
 The environment consists of a number of "Bots", "Packs" and "Places" located at different positions in a continuous space.<br />
