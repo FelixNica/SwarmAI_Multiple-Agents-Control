@@ -4,9 +4,7 @@ Quick preview:<br />
 ![](evaluation_loop.gif)
 
 ### Problem definition:
-Given a number of autonomous mobility entities create a single neural network that can infer their next required positions in a specific logistic reward based environment.<br />
-
-### Environment details:
+Given a number of autonomous mobility entities create a single neural network that can infer their next required positions in a specific logistic reward based environment.<br /><br />
 The environment consists of a number of <strong>"Bots"</strong>, <strong>"Packs"</strong> and <strong>"Places"</strong> located at different positions in a <strong>continuous</strong> space.<br /><br />
 ![](bot.png)<br />
 "Bot" - representation of an autonomous vehicle, can be a car(Uber/Robotaxi), drone, construction robot or any entity that can move to a given position in order to accomplish a task.<br /><br />
@@ -18,6 +16,7 @@ Bots can pick up packs when they are in close proximity to them.<br />
 Bots can drop packs when they are in close proximity to the corresponding places.<br />
 "Heading" - coordinate vector that provides the bots their new destination.<br />
 "Swarm agent" - A single policy neural network that generates a new heading for any specific state of the environment in order to complete the task.<br />
-During training the swarm agent receives 50 points reward if a bot picks up a pack and 100 points reward if the pack is delivered to the corresponding place, ex: for 2 bots, 2 packs and 1 place the maximum total reward is 300.<br />
+During training the swarm agent receives 50 points reward if a bot picks up a pack and 100 points reward if the pack is delivered to the corresponding place, ex: for 2 bots, 2 packs and 1 place the maximum total reward is 300.<br /><br />
+The problem is consedered solved if the swarm agent can obtain a reward average over 95% of maximum total reward over span of 100 episodes
 
 ### Policy network implementation:
