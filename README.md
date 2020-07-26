@@ -7,9 +7,9 @@ Given a number of autonomous mobility entities create a single neural network th
 
 ### Implementation details:
 The environment consists of a number of "Bots", "Packs" and "Places" located at different positions in a continuous space.<br />
-"Bot" - representation of an autonomous vehicle, can be a car(Uber/Robotaxi), drone, construction robot or any entity that can move to a given position in order to accomplish a task.<br />
-"Pack" - representation of cargo, a person, construction material or anything that needs to be transported to a certain destination.<br />
-"Place" - where the pack needs to end up, the destination.<br />
+![](bot.png)"Bot" - representation of an autonomous vehicle, can be a car(Uber/Robotaxi), drone, construction robot or any entity that can move to a given position in order to accomplish a task.<br />
+![](pack.png)"Pack" - representation of cargo, a person, construction material or anything that needs to be transported to a certain destination.<br />
+![](place.png)"Place" - where the pack needs to end up, the destination.<br />
 Bots can pick up packs when they are in close proximity to them.<br />
 Bots can drop packs when they are in close proximity to the corresponding places.<br />
 "Heading" - coordinate vector that provides the bots their new destination.<br />
