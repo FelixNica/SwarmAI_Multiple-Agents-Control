@@ -1,3 +1,3 @@
-# SwarmAI_Multiple-entity-logistics-and-coordination
+# Multiple agent logistics and coordination using deep reinforcement learning
 
 ![](evaluation_loop.gif)
