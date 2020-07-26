@@ -3,10 +3,10 @@
 ![](evaluation_loop.gif)
 
 ### Problem definition:
-Given a number of autonomous mobility entities create a single neural network that can infer their next required positions in a specific logistic reward based environment.<br /><br />
+Given a number of autonomous mobility entities create a single neural network that can infer their next required positions in a specific logistic reward based environment.<br />
 
 ### Implementation details:
-The environment consists of a number of "Bots", "Packs" and "Places" located at different positions in a continuous space.<br />
+The environment consists of a number of <strong>"Bots"</strong>, <strong>"Packs"</strong> and <strong>"Places"</strong> located at different positions in a <strong>continuous</strong> space.<br /><br />
 ![](bot.png)<br />
 "Bot" - representation of an autonomous vehicle, can be a car(Uber/Robotaxi), drone, construction robot or any entity that can move to a given position in order to accomplish a task.<br />
 ![](pack.png)<br />
