@@ -1,6 +1,6 @@
 # Multiple entity logistics and continuous space coordination using deep reinforcement learning
 
-Quick preview:
+Quick preview:<br />
 ![](evaluation_loop.gif)
 
 ### Problem definition:
