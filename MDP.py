@@ -32,7 +32,9 @@ def train_policy(hyper_parameters_dict, path):
 	torch.manual_seed(seed)
 	np.random.seed(seed)
 
-	state_dim = env.state_shape
+	stack_number = 3 #frame stacker implementation - move it to param dict
+	frame_dim = env.state_shape
+	state_dim = frame_dim * stack_number
 	action_dim = env.action_shape
 	max_action = env.space_size
 	kwargs = {
@@ -48,11 +50,17 @@ def train_policy(hyper_parameters_dict, path):
 		'policy_noise': float(param['policy_noise']) * max_action,
 		'noise_clip': float(param['noise_clip']) * max_action}
 	policy = TD3.TD3(**kwargs)
+	#policy.load(f"{path}/model")
 
+	frame_stacker = FrameStacker(frame_dim, stack_number)
 	replay_buffer = ReplayBuffer(state_dim, action_dim)
-	evaluations = [eval_policy(policy, env, seed, eval_length)]
 
-	state, done = env.reset(), False
+	evaluations = [eval_policy(policy, env, seed, eval_length, (frame_dim, stack_number))]
+
+	frame = env.reset()
+	state = frame_stacker.make_next_state(frame)
+
+	done = False
 	episode_reward = 0
 	episode_steps = 0
 	episode_num = 0
@@ -70,9 +78,11 @@ def train_policy(hyper_parameters_dict, path):
 			).clip(0, max_action)
 
 		# Perform action
-		next_state, reward, done = env.step(action)
+		next_frame, reward, done = env.step(action)
 		done_bool = float(done) if episode_steps < env.episode_steps else 0
 
+		# Build next_state form stacker
+		next_state = frame_stacker.make_next_state(next_frame)
 		# Store data in replay buffer
 		replay_buffer.add(state, action, next_state, reward, done_bool)
 
@@ -90,20 +100,25 @@ def train_policy(hyper_parameters_dict, path):
 									f"Reward: {episode_reward:.3f}")
 			print(80*'_')
 			# Reset environment
-			state, done = env.reset(), False
+			frame = env.reset()
+			state = frame_stacker.make_next_state(frame)
+			frame_stacker.reset()
+			done = False
 			episode_reward = 0
 			episode_steps = 0
 			episode_num += 1
 
 		# Evaluate phase
 		if (t + 1) % eval_freq == 0:
-			evaluations.append(eval_policy(policy, env, seed, eval_length, render=True))
+			evaluations.append(eval_policy(policy, env, seed, eval_length, (frame_dim, stack_number)))
 			np.save(f"{path}/metrics", evaluations)
 			policy.save(f"{path}/model")
 			if evaluations[-1] > min_score:
-				big_eval = eval_policy(policy, env, seed, eval_length*10)
+				big_eval = eval_policy(policy, env, seed, eval_length*10, (frame_dim, stack_number))
 				if big_eval >= min_score:
 					print(80 * "=")
+					for ev in evaluations:
+						print(ev)
 					print(f"Solved: At training episode {episode_num} "
 											f"mean for {eval_length*10} eps evaluation is "
 											f"{np.max(evaluations):.2f} >= {min_score}")
@@ -111,31 +126,62 @@ def train_policy(hyper_parameters_dict, path):
 					break
 
 
-def eval_policy(policy, env, seed, eval_episodes, render=False, delay=None):
-	env.seed(seed + 100)
+def eval_policy(policy, env, seed, eval_episodes, stacker_dims, render=True, delay=None):
+	rdn = np.random.randint(0, 100)
+	env.seed(seed + rdn)
+
+	eval_stacker = FrameStacker(*stacker_dims)
 
 	avg_reward = 0.
 	eps = 0
 	for _ in range(eval_episodes):
 		eps += 1
-		state, done = env.reset(), False
+		frame, done = env.reset(), False
+		state = eval_stacker.make_next_state(frame)
 		while not done:
 			state = np.array(state, dtype='float32')
 			action = policy.select_action(state)
-			state, reward, done = env.step(action)
+			frame, reward, done = env.step(action)
+			state = eval_stacker.make_next_state(frame)
 			avg_reward += reward
 			if render is True:
-				env.render()
+				env.render('save/')
 			if delay is not None:
 				time.sleep(delay)
 			if done:
 				print(40 * "- ")
-
+		eval_stacker.reset()
 	avg_reward /= eval_episodes
 
 	print(f"Evaluation over {eval_episodes} episodes: {avg_reward:.3f}")
 	print(40 * "= ")
 	return avg_reward
+
+
+class FrameStacker(object):
+	def __init__(self, frame_dim, max_size=int(8)):
+		self.frame_dim = frame_dim
+		self.max_size = max_size
+		self.ptr = 0
+		self.first = True
+		self.state = np.zeros((self.max_size * self.frame_dim))
+
+	def make_next_state(self, frame):
+		if self.first is True:
+			for i in range(self.frame_dim):
+				self.state = np.roll(self.state, self.frame_dim)
+				self.state[:self.frame_dim] = frame
+				self.first = False
+
+		else:
+			self.state = np.roll(self.state, self.frame_dim)
+			self.state[:self.frame_dim] = frame
+
+		return np.array(self.state)
+
+	def reset(self):
+		self.state = np.zeros((self.max_size * self.frame_dim))
+		self.first = True
 
 
 class ReplayBuffer(object):

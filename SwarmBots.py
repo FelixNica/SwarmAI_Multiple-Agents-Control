@@ -51,7 +51,7 @@ class Game:
         self.episode_steps = episode_steps
         self.step_counter = 0
 
-        self.move_coefficient = 0.1
+        self.move_coefficient = 0.5
         self.bot_color = (52, 171, 235)
         self.pack_color = (235, 150, 52)
         self.place_color = (155, 235, 52)
@@ -66,7 +66,7 @@ class Game:
         self.state_shape = len(init_state)
         self.action_shape = len(self.heading)
 
-        self.max_reward = self.n_packs*(self.load_reward + self.unload_reward)
+        self.max_reward = self.n_packs*(self.load_reward + self.unload_reward) + episode_steps
         self.screen_index = 0
 
     @staticmethod
@@ -181,7 +181,9 @@ class Game:
 
         if unloaded == self.n_packs:
             done = True
-            print(f"Done: All Packs are Unloaded: {unloaded}")
+            bonus = self.episode_steps - self.step_counter
+            reward += bonus
+            print(f"Done: All Packs Unloaded: {unloaded}, Bonus: {bonus}")
         self.step_counter += 1
         if self.step_counter >= self.episode_steps:
             done = True
@@ -238,6 +240,7 @@ class Game:
             pygame.image.save(self.screen, f'{save_location}{self.screen_index}.png')
             self.screen_index += 1
 
+
 '''
 game = Game(3, 6, 3)
 change_every = 50
@@ -258,12 +261,4 @@ for i in range(100000):
     if done:
         break
     time.sleep(0.1)
-
-
-#test code
-pressed = pygame.key.get_pressed()
-if pressed[pygame.K_UP]: self.bots[0].y -= 3
-if pressed[pygame.K_DOWN]: self.bots[0].y += 3
-if pressed[pygame.K_LEFT]: self.bots[0].x -= 3
-if pressed[pygame.K_RIGHT]: self.bots[0].x += 3
 '''
