@@ -6,7 +6,7 @@ Quick preview:<br />
 ### Problem definition:
 Given a number of autonomous mobility entities create a single neural network that can infer their next required positions in a reward based environment.<br /><br />
 The environment consists of a number of <strong>"Bots"</strong>, <strong>"Packs"</strong> and <strong>"Places"</strong> located at different positions in a <strong>continuous</strong> space.<br /><br />
-![](images/legend.jpg)<br/><br/>
+![](legend.jpg)<br/><br/>
 
 Bots can pick up packs when they are in close proximity to them.<br />
 Bots can drop packs when they are in close proximity to the corresponding places.<br />
