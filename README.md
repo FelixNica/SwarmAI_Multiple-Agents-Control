@@ -33,13 +33,11 @@ The policy output is the next heading vector consisting of x,y coordinates for a
 
 The policy network is trained using "Twin Delayed Deep Deterministic Policy Gradients" - TD3, an actor-critic method 
 derived from "Deep Deterministic Policy Gradients" - DDPG, that uses a second critic network in order to prevent
-value over estimation. <br/>
-
-An off-policy method was chosen due to sample efficiency:
+value over estimation. An off-policy method was chosen due to sample efficiency: <br/>
 ![](images/methods_tree.png)
 Original TD3 Paper: [Addressing Function Approximation Error in Actor-Critic Methods](https://arxiv.org/pdf/1802.09477.pdf) <br/>
 
-TD3 specific critic implementation details:
+TD3 critic implementation details:
     
     # Compute target Q values for both critic networks:
     target_q1, target_q2 = self.critic_target(next_state, next_action)
@@ -61,7 +59,7 @@ TD3 specific critic implementation details:
 	critic_loss.backward()
 	self.critic_optimizer.step()
 	
-TD3 specific actor implementation details:
+TD3 actor implementation details:
 	
 	# Delayed policy updates - the actor is updated less frequently:
 	if self.total_it % self.policy_freq == 0:
