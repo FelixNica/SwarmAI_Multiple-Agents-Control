@@ -33,8 +33,8 @@ The policy output is the next heading vector consisting of x,y coordinates for a
 
 The policy network is trained using "Twin Delayed Deep Deterministic Policy Gradients" - TD3, an actor-critic method 
 derived from "Deep Deterministic Policy Gradients" - DDPG that uses a second critic network in order to prevent
-value over estimation.<br/>
-Original TD3 Paper: [Addressing Function Approximation Error in Actor-Critic Methods](https://arxiv.org/pdf/1802.09477.pdf) <br/>
+value over estimation. <br/>
 
-TD3 was chosen primarily due to sample efficiency (off-policy method):
+An off-policy method was chosen due to sample efficiency:
 ![](images/methods_tree.png)
+Original TD3 Paper: [Addressing Function Approximation Error in Actor-Critic Methods](https://arxiv.org/pdf/1802.09477.pdf) <br/>
