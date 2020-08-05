@@ -1,12 +1,12 @@
 # Multiple entity logistics and continuous space coordination using deep reinforcement learning
 
 Quick preview:<br />
-![](evaluation_loop.gif)
+![](images/evaluation_loop.gif)
 
 ### Problem definition:
 Given a number of autonomous mobility entities create a single neural network that can infer their next required positions in order to solve a reward based environment.<br /><br />
 The environment consists of a number of <strong>"Bots"</strong>, <strong>"Packs"</strong> and <strong>"Places"</strong> located at different positions in a <strong>continuous</strong> space.<br /><br />
-![](legend.jpg)<br/><br/>
+![](images/legend.jpg)<br/><br/>
 
 Bots can pick up packs when they are in close proximity to them.<br />
 Bots can drop packs when they are in close proximity to the corresponding places.<br />
