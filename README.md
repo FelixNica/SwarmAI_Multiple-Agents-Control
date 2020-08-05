@@ -39,9 +39,7 @@ An off-policy method was chosen due to sample efficiency:
 ![](images/methods_tree.png)
 Original TD3 Paper: [Addressing Function Approximation Error in Actor-Critic Methods](https://arxiv.org/pdf/1802.09477.pdf) <br/>
 
-TD3 specific code implementation details:
-
-    #TD3 critic gradient pass:
+TD3 specific critic implementation details:
     
     # Compute target Q values for both critic networks:
     target_q1, target_q2 = self.critic_target(next_state, next_action)
@@ -62,3 +60,16 @@ TD3 specific code implementation details:
     self.critic_optimizer.zero_grad()
 	critic_loss.backward()
 	self.critic_optimizer.step()
+	
+TD3 specific actor implementation details:
+	
+	# Delayed policy updates - the actor is updated less frequently:
+	if self.total_it % self.policy_freq == 0:
+	
+	    # Compute the actor loss by propagating through one of the critic networks:
+	    actor_loss = -self.critic.q1(state, self.actor(state)).mean()
+		
+	    # Optimize the actor:
+	    self.actor_optimizer.zero_grad()
+	    actor_loss.backward()
+	    self.actor_optimizer.step()
