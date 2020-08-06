@@ -75,8 +75,8 @@ TD3 actor implementation details:
 # Hyper-parameters
 
 <strong>Environment Hyper-parameters:</strong> <br />
->env = "SB"              # File naming purposes <br />
->bots_number = 2         # Number of bots in environment<br />
+>env = "SB" ************** File naming purposes <br />
+>bots_number = 2 ********* Number of bots in environment<br />
 >packs_number = 2        # Number of packs in environment <br />
 >places_number = 1       # Number of places in environment <br />
 >bot_scale = 0.03        # Size of bots, relative to total space<br />
