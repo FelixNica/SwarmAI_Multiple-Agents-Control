@@ -94,7 +94,7 @@ learning_rate = 0.00001 # Optimizer learning rate, make smaller for larger netwo
 update_rate = 2         # Policy function optimisation frequency
 update_tau = 0.005      # Target policy wight transfer factor
 discount = 0.99         # Future reward discount for Bellman equation
-policy_noise = 0.2      # Noise added to replay memory during optimisation pass
+policy_noise = 0.2      # Noise added to replay memory during the optimisation pass
 noise_clip = 0.5        # Policy noise clipping factor
 
 <strong>Markov Decision Process Hyper-parameters </strong><br />
@@ -103,6 +103,6 @@ max_steps = 4000000     # Maximum allowed experiment steps
 start_step = 2000       # Pre-training replay buffer loading
 eval_freq = 1000        # Evaluation pass interval 
 eval_length = 10        # Base evaluation length
-min_performance = 0.95  # Minimum performance before stop (see problem statement)
+min_performance = 0.95  # Minimum performance before experiment stops (see problem statement)
 seed = 30               # Universal seed (environment, noise, weight initialisation)
 </pre>
