@@ -73,18 +73,18 @@ TD3 actor implementation details:
 	    self.actor_optimizer.step()
 	    
 # Hyper-parameters
-
+<pre>
 <strong>Environment Hyper-parameters:</strong> <br />
-<pre>env = "SB"              # File naming purposes </pre>
-<pre>bots_number = 2         # Number of bots in environment</pre>
-<pre>packs_number = 2        # Number of packs in environment </pre>
-<pre>places_number = 1       # Number of places in environment </pre>
-<pre>bot_scale = 0.03        # Size of bots, relative to total space</pre>
-<pre>pack_scale = 0.025      # Size of packs, affects loading range </pre>
-<pre>place_scale = 0.1       # Size of places, affects unloading range </pre>
-<pre>load_reward = 50        # Reward if a bot loads a pack</pre>
-<pre>unload_reward = 100     # Reward if a bot unloads at place </pre>
-<pre>episode_steps = 50      # Episode length in environment frames </pre>
+env = "SB"              # File naming purposes <br />
+bots_number = 2         # Number of bots in environment<br />
+packs_number = 2        # Number of packs in environment <br />
+places_number = 1       # Number of places in environment <br />
+bot_scale = 0.03        # Size of bots, relative to total space<br />
+pack_scale = 0.025      # Size of packs, affects loading range <br />
+place_scale = 0.1       # Size of places, affects unloading range <br />
+load_reward = 50        # Reward if a bot loads a pack<br />
+unload_reward = 100     # Reward if a bot unloads at place <br />
+episode_steps = 50      # Episode length in environment frames <br />
 
 <strong>Policy Hyper-parameters: </strong><br />
 policy = "TD3-1"        # File naming purposes <br />
@@ -105,3 +105,4 @@ eval_freq = 1000        # Evaluation pass interval <br />
 eval_length = 10        # Base evaluation length <br />
 min_performance = 0.95  # Minimum performance before stop (see problem statement) <br />
 seed = 30               # Universal seed (environment, noise, weight initialisation)<br />
+</pre>
