@@ -74,34 +74,36 @@ TD3 actor implementation details:
 	    
 # Hyper-parameters
 
+<code>
 <strong>Environment Hyper-parameters:</strong> <br />
-env = "SB" .............. File naming purposes <br />
-bots_number = 2 ......... Number of bots in environment<br />
-packs_number = 2 ........ Number of packs in environment <br />
-places_number = 1 ....... Number of places in environment <br />
-bot_scale = 0.03 ........ Size of bots, relative to total space<br />
-pack_scale = 0.025 ...... Size of packs, affects loading range <br />
-place_scale = 0.1 ....... Size of places, affects unloading range <br />
-load_reward = 50 ........ Reward if a bot loads a pack<br />
-unload_reward = 100 ..... Reward if a bot unloads at place <br />
-episode_steps = 50 ...... Episode length in environment frames <br />
+env = "SB"              # File naming purposes <br />
+bots_number = 2         # Number of bots in environment<br />
+packs_number = 2        # Number of packs in environment <br />
+places_number = 1       # Number of places in environment <br />
+bot_scale = 0.03        # Size of bots, relative to total space<br />
+pack_scale = 0.025      # Size of packs, affects loading range <br />
+place_scale = 0.1       # Size of places, affects unloading range <br />
+load_reward = 50        # Reward if a bot loads a pack<br />
+unload_reward = 100     # Reward if a bot unloads at place <br />
+episode_steps = 50      # Episode length in environment frames <br />
 
 <strong>Policy Hyper-parameters: </strong><br />
-policy = "TD3-1" ........ File naming purposes <br />
-policy_width = 512 ...... Neural Network layer size<br />
-batch_size 1024 ......... Training batch size, GPU memory limited<br />
-learning_rate = 0.00001 . Optimizer learning rate, make smaller for larger networks<br />
-update_rate = 2 ......... Policy function optimisation frequency <br />
-update_tau = 0.005 ...... Target policy wight transfer factor <br />
-discount = 0.99 ......... Future reward discount for Bellman equation <br />
-policy_noise = 0.2 ...... Noise added to replay memory during optimisation pass<br />
-noise_clip = 0.5 ........ Policy noise clipping factor <br />
+policy = "TD3-1"        # File naming purposes <br />
+policy_width = 512      # Neural Network layer size<br />
+batch_size 1024         # Training batch size, GPU memory limited<br />
+learning_rate = 0.00001 # Optimizer learning rate, make smaller for larger networks<br />
+update_rate = 2         # Policy function optimisation frequency <br />
+update_tau = 0.005      # Target policy wight transfer factor <br />
+discount = 0.99         # Future reward discount for Bellman equation <br />
+policy_noise = 0.2      # Noise added to replay memory during optimisation pass<br />
+noise_clip = 0.5        # Policy noise clipping factor <br />
 
 <strong>Markov Decision Process Hyper-parameters </strong><br />
-expl_noise = 0.1 ........ Action noise for exploration <br />
-max_steps = 4000000 ..... Maximum allowed experiment steps<br />
-start_step = 2000 ....... Pre-training replay buffer loading<br />
-eval_freq = 1000  ....... Evaluation pass interval <br />
-eval_length = 10  ....... Base evaluation length <br />
-min_performance = 0.95 .. Minimum performance before stop (see problem statement) <br />
-seed = 30 ............... Universal seed (environment, noise, weight initialisation)<br />
+expl_noise = 0.1        # Action noise for exploration <br />
+max_steps = 4000000     # Maximum allowed experiment steps<br />
+start_step = 2000       # Pre-training replay buffer loading<br />
+eval_freq = 1000        # Evaluation pass interval <br />
+eval_length = 10        # Base evaluation length <br />
+min_performance = 0.95  # Minimum performance before stop (see problem statement) <br />
+seed = 30               # Universal seed (environment, noise, weight initialisation)<br />
+</code>
