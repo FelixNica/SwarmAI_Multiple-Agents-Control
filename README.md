@@ -75,16 +75,16 @@ TD3 actor implementation details:
 # Hyper-parameters
 
 <strong>Environment Hyper-parameters:</strong> <br />
->env = "SB" ************** File naming purposes <br />
->bots_number = 2 ********* Number of bots in environment<br />
->packs_number = 2        # Number of packs in environment <br />
->places_number = 1       # Number of places in environment <br />
->bot_scale = 0.03        # Size of bots, relative to total space<br />
->pack_scale = 0.025      # Size of packs, affects loading range <br />
->place_scale = 0.1       # Size of places, affects unloading range <br />
->load_reward = 50        # Reward if a bot loads a pack<br />
->unload_reward = 100     # Reward if a bot unloads at place <br />
->episode_steps = 50      # Episode length in environment frames <br />
+<pre>env = "SB"              # File naming purposes </pre><br />
+<pre>bots_number = 2         # Number of bots in environment</pre><br />
+<pre>packs_number = 2        # Number of packs in environment </pre><br />
+<pre>places_number = 1       # Number of places in environment </pre><br />
+<pre>bot_scale = 0.03        # Size of bots, relative to total space</pre><br />
+<pre>pack_scale = 0.025      # Size of packs, affects loading range </pre><br />
+<pre>place_scale = 0.1       # Size of places, affects unloading range </pre><br />
+<pre>load_reward = 50        # Reward if a bot loads a pack</pre><br />
+<pre>unload_reward = 100     # Reward if a bot unloads at place </pre><br />
+<pre>episode_steps = 50      # Episode length in environment frames </pre><br />
 
 <strong>Policy Hyper-parameters: </strong><br />
 policy = "TD3-1"        # File naming purposes <br />
