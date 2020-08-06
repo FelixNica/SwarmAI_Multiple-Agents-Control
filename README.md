@@ -74,7 +74,7 @@ TD3 actor implementation details:
 	    
 # Hyper-parameters
 <pre>
-<strong>Environment Hyper-parameters:</strong> <br />
+<strong>#Environment Hyper-parameters:</strong> <br />
 env = "SB"              # File naming purposes
 bots_number = 2         # Number of bots in environment
 packs_number = 2        # Number of packs in environment
@@ -86,7 +86,7 @@ load_reward = 50        # Reward if a bot loads a pack
 unload_reward = 100     # Reward if a bot unloads at place
 episode_steps = 50      # Episode length in environment frames
 
-<strong>Policy Hyper-parameters: </strong><br />
+<strong>#Policy Hyper-parameters: </strong><br />
 policy = "TD3-1"        # File naming purposes
 policy_width = 512      # Neural Network layer size
 batch_size 1024         # Training batch size, GPU memory limited
@@ -97,7 +97,7 @@ discount = 0.99         # Future reward discount for Bellman equation
 policy_noise = 0.2      # Noise added to replay memory during the optimisation pass
 noise_clip = 0.5        # Policy noise clipping factor
 
-<strong>Markov Decision Process Hyper-parameters </strong><br />
+<strong>#Markov Decision Process Hyper-parameters: </strong><br />
 expl_noise = 0.1        # Action noise for exploration
 max_steps = 4000000     # Maximum allowed experiment steps
 start_step = 2000       # Pre-training replay buffer loading
